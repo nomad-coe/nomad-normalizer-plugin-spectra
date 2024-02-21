@@ -32,7 +32,7 @@ class SpectraNormalizer(Normalizer):
             self.logger = logger.bind(normalizer=self.__class__.__name__)
 
         # SinglePoint
-        if self.entry_archive.m_xpath("run[-1].calculation[-1].spectra"):
+        if self.entry_archive.m_xpath('run[-1].calculation[-1].spectra'):
             calc_section = self.entry_archive.run[-1].calculation[-1]
             for spectra in calc_section.spectra:
                 if self.is_valid_spectra(spectra):
@@ -41,10 +41,10 @@ class SpectraNormalizer(Normalizer):
                         return
                     if calc_section.method_ref.photon and not spectra.provenance:
                         provenance_cls = spectra.m_def.all_sub_sections[
-                            "provenance"
+                            'provenance'
                         ].sub_section.section_cls
                         provenance = provenance_cls(
-                            methodology=calc_section.method_ref, label="photon"
+                            methodology=calc_section.method_ref, label='photon'
                         )
                         spectra.provenance.append(provenance)
                     # Normalizing intensities to their maximum value.
@@ -61,17 +61,17 @@ class SpectraNormalizer(Normalizer):
                 spectra.n_energies = n_energies
             else:
                 self.logger.warning(
-                    "Empty arrays or size of arrays do not coincide: could not validate spectra."
+                    'Empty arrays or size of arrays do not coincide: could not validate spectra.'
                 )
                 return False
             if (spectra.intensities < 0.0).any():
                 self.logger.warning(
-                    "Invalid negative intensities found: could not validate spectra."
+                    'Invalid negative intensities found: could not validate spectra.'
                 )
                 return False
             return True
         else:
             self.logger.warning(
-                "Parsed spectra do not contain excitation_energies and intensitites to be normalized."
+                'Parsed spectra do not contain excitation_energies and intensitites to be normalized.'
             )
             return False
