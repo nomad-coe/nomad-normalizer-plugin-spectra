@@ -16,6 +16,7 @@
 # limitations under the License.
 #
 
+from nomad.datamodel import EntryArchive
 from nomad.normalizing.normalizer import Normalizer
 
 
@@ -26,14 +27,14 @@ class SpectraNormalizer(Normalizer):
     - Normalizes intensities to their maximum value.
     """
 
-    def normalize(self, logger=None) -> None:
+    def normalize(self, archive: EntryArchive, logger=None) -> None:
         # Setup logger
         if logger is not None:
             self.logger = logger.bind(normalizer=self.__class__.__name__)
 
         # SinglePoint
-        if self.entry_archive.m_xpath('run[-1].calculation[-1].spectra'):
-            calc_section = self.entry_archive.run[-1].calculation[-1]
+        if archive.m_xpath('run[-1].calculation[-1].spectra'):
+            calc_section = archive.run[-1].calculation[-1]
             for spectra in calc_section.spectra:
                 if self.is_valid_spectra(spectra):
                     # Find photon method provenance
