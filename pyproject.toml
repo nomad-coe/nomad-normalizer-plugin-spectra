@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "nomad-normalizer-plugin-spectra"
 version = "1.0"
-description = "SOAP nomad plugin for NOMAD."
+description = "Spectra normalizer plugin for NOMAD."
 readme = "README.md"
 authors = [{ name = "The NOMAD Authors" }]
 license = { text = "Apache-2.0" }
@@ -69,5 +69,5 @@ line-ending = "auto"
 [tool.setuptools.packages.find]
 include = ["spectranormalizer*"]
 
-[tool.setuptools.package-data]
-spectranormalizer = ["*/nomad_plugin.yaml"]
+[project.entry-points.'nomad.plugin']
+spectranormalizer = "spectranormalizer:spectra_normalizer_entry_point"

@@ -15,4 +15,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-from .normalizer import SpectraNormalizer
+from nomad.config.models.plugins import NormalizerEntryPoint
+
+
+class SpectraNormalizerEntryPoint(NormalizerEntryPoint):
+    def load(self):
+        import spectranormalizer
+        from .normalizer import SpectraNormalizer
+
+        spectranormalizer.SpectraNormalizer = SpectraNormalizer
+
+        return SpectraNormalizer(**self.dict())
+
+
+spectra_normalizer_entry_point = SpectraNormalizerEntryPoint(
+    name='SpectraNormalizer',
+    description='Normalizer for the spectra data.',
+)
