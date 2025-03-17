@@ -10,7 +10,7 @@ readme = "README.md"
 authors = [{ name = "The NOMAD Authors" }]
 license = { text = "Apache-2.0" }
 dependencies = [
-    "nomad-lab>=1.3.6.dev1",
+    "nomad-lab>=1.3.13",
 ]
 
 [project.urls]
@@ -18,7 +18,7 @@ homepage = "https://github.com/nomad-coe/nomad-normalizer-plugin-spectra"
 
 [project.optional-dependencies]
 dev = [
-    'mypy==1.0.1',
+    'mypy>=1.15',
     'pytest>= 5.3.0, <8',
     'pytest-timeout>=1.4.2',
     'pytest-cov>=2.7.1',
