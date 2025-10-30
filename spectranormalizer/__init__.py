@@ -20,8 +20,8 @@ from nomad.config.models.plugins import NormalizerEntryPoint
 
 class SpectraNormalizerEntryPoint(NormalizerEntryPoint):
     def load(self):
-        import spectranormalizer
-        from .normalizer import SpectraNormalizer
+        import spectranormalizer  # noqa
+        from .normalizer import SpectraNormalizer  # noqa
 
         spectranormalizer.SpectraNormalizer = SpectraNormalizer
 
